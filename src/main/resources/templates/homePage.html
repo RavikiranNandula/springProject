@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/homePage.css}"/>
+    <title>New/Edit Post</title>
+</head>
+<body>
+<div class="main-container">
+    <div class="heading-container">
+        <h1 id="main-heading">My Blog Application</h1>
+        <form class="search-container" th:action="@{/searchPost}" method="post">
+            <input type="search"  class="search-input" placeholder="search" name="search">
+            <a href="" class="login-class">Login</a>
+        </form>
+        <div class="filters-container">
+            <form th:action="@{/getTagRelevantPosts}">
+                <select name="Filters" class="filter-class" placeholder="Filters" th:onchange="@{/saveccc}">
+                    <option>Filters</option>
+                    <option th:each="tag: ${tagsList}"  value="${tag.name}" th:text="${tag.name}">
+                    </option>
+                </select>
+            </form>
+            <select name="Sort" class="sort-class" placeholder="Sort">
+                <option>Sort</option>
+            </select>
+        </div>
+    </div>
+    <div class="posts-container" >
+        <div class="posts-box" th:each="blog: ${blogsList}" th:if="${blog.isPublished==true}">
+            <a class="post-anchor" th:href="@{/post/{id}(id=${blog.id})}">
+                <div class="posts-box-inner">
+                    <h1 class="post-heading" th:text="${blog.title}"></h1>
+                    <div >
+                        <i>Posted on</i>
+                        <span th:text="${#dates.format(blog.createdAt, 'dd-MMM-yyyy')}"></span>
+                        <i>by</i>
+                        <span th:text="${blog.author}"></span>
+                        </span>
+                    </div>
+                    <p class="author" th:text="${blog.excerpt}"></p>
+                </div>
+            </a>
+        </div>
+        <div class="posts-box" th:each="blog: ${blogsList}" th:if="${blog.isPublished==false}">
+            <a class="post-anchor" th:href="@{/post/{id}(id=${blog.id})}">
+                <div class="posts-box-inner">
+                    <h1 class="post-heading" th:text="${blog.title}"></h1>
+                    <div >
+                        <i>Saved on</i>
+                        <span th:text="${#dates.format(blog.createdAt, 'dd-MMM-yyyy')}"></span>
+                        <i>by</i>
+                        <span th:text="${blog.author}"></span>
+                        </span>
+                    </div>
+                    <p class="author" th:text="${blog.excerpt}"></p>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

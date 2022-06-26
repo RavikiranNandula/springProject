@@ -1,0 +1,84 @@
+.main-container{
+    display: flex;
+    flex-direction: column;
+    padding:20px;
+}
+#main-heading{
+    display: inline;
+    font-family: "Poppins";
+    font-size: 40px;
+    font-weight: 500;
+    align-self: flex-start;
+    margin-top: 30px;
+}
+.search-input{
+    height: 35px;
+    padding: 10px;
+    border-radius: 10px;
+    border-width: 1px;
+    margin-right: 25px;
+    margin-bottom: 30px;
+}
+.filter-class{
+    height: 35px;
+    width: 180px;
+}
+.sort-class{
+    height: 35px;
+    width: 180px;
+}
+.login-class{
+    color: blue;
+    text-decoration: none;
+}
+.search-container{
+    align-self: flex-end;
+    display: inline;
+}
+.filters-container{
+    align-self: flex-end;
+    display: inline;
+}
+.heading-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.posts-container{
+    margin-top: 30px;
+}
+.posts-box{
+      overflow: auto;
+      height: 230px;
+      width: 45%;
+      border: 2px solid black;
+      margin:10px;
+      padding:0px;
+}
+.posts-box-inner{
+    padding: 10px;
+}
+.posts-container{
+    display: flex;
+    justify-content:center;
+    margin-top: 30px;
+    max-width: 100%;
+    flex-wrap: wrap;
+}
+.post-heading{
+    font-family: "Roboto";
+    font-size: 30px;
+    font-weight: 500;
+}
+.author{
+    font-family: "Roboto";
+    font-size: 18px;
+    font-weight: 500;
+}
+.inner-container{
+display:flex;
+}
+.post-anchor{
+text-decoration:none;
+color:black;
+}

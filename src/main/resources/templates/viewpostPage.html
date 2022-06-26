@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/viewPostPage.css}" href="viewPostPage.css"/>
+</head>
+<body>
+<div class="main-container">
+    <a href="" class="login-class">Login</a>
+    <h1 class="main-heading">My Blog Application</h1>
+    <div class="data-container">
+        <h1 class="post-title" th:text="${postData.title}"></h1>
+        <div>
+            <span th:text="${postData.author}" class="post-author">,</span>
+            <span>,</span>
+            <span th:text="${#dates.format(postData.createdAt, 'dd-MMM-yyyy')}" class="post-author">></span>
+        </div>
+        <p class="post-content" th:text="${postData.content}"></p>
+    </div>
+    <div>
+        <a align="center" th:href="@{/editpost/{id}(id=${postData.id})}">
+            <button class="button">Edit</button>
+        </a>
+        <a href="#formContainer">
+            <button class="button">Comment</button>
+        </a>
+    </div>
+    <hr>
+    <h1>Comments</h1>
+    <div class="comments-container">
+        <div class="posts-box" th:each="comment: ${commentsList}">
+            <form th:action="@{/editComment{id}(id=${comment.id})}" method="post">
+                <div class="posts-box-inner">
+                    <div>
+                        <i>Commented on</i>
+                        <span th:text="${#dates.format(comment.createdAt, 'dd-MMM-yyyy')}"></span>
+                        <i>by</i>
+                        <span th:text="${comment.name}"></span>
+                        </span>
+                    </div>
+                    <p class="author" th:text="${comment.text}"></p>
+                    <input type="submit" value="Edit">
+                </div>
+            </form>
+            <form th:action="@{/deleteComment/{id}(id=${comment.id})}" method="post">
+                <input type="submit" value="Delete">
+            </form>
+        </div>
+    </div>
+    <hr>
+    <div align="center" id="formContainer">
+        <h3>Leave a Comment</h3>
+        <form th:action="@{{id}/addComment(id=${postData.id})}" method="post">
+            Name   :<br><input type="text" style="width:20vw;margin-bottom:10px;" name="name" /><br>
+            Email  :<br><input type="text" style="width:20vw;margin-bottom:10px;"  name="email" /><br>
+            Comment :<br><textarea rows="7" style="width:20vw;margin-bottom:10px;" name="comment"></textarea>
+            <br/><button type="submit" class="button">Add</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>
